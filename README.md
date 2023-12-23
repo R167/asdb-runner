@@ -10,6 +10,15 @@ setup. The `example.env` file contains comments explaining what each variable do
 If you disable feeding to certain services, you will want to remove the corresponding
 service configuration from the `docker-compose.yml` file.
 
+The runtime uses https://github.com/sdr-enthusiasts images. See the following links for
+more information on the images used:
+
+* [ultrafeeder](https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder) - main image that contains the dump1090 receiver and forwards data to other services.
+* [dump978](https://github.com/sdr-enthusiasts/docker-dump978) - contains the dump978 receiver and forwards data to other services.
+* [piaware](https://githb.com/sdr-enthusiasts/docker-piaware) - forwards data to FlightAware.
+* [rbfeeder](https://githb.com/sdr-enthusiasts/docker-radarbox) - forwards data to RadarBox.
+* [fr24feed](https://githb.com/sdr-enthusiasts/docker-flightradar24) - forwards data to Flightradar24.
+
 ## Usage
 
 ```bash
