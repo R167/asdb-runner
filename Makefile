@@ -6,7 +6,6 @@ REMOTE_HOST=$(SYNC_HOST)
 SYNC_PATH?=adsb
 
 sync:
-	@echo "$(SYNC_PATH)" && exit 2
 	@test -z $(REMOTE_HOST) && echo "Please set SYNC_HOST in .env file" && exit 1 || true
 	@echo "Syncing files to remote server..."
 	@rsync -rvz ./ $(REMOTE_HOST):$(SYNC_PATH)

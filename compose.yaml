@@ -90,6 +90,7 @@ services:
       # --------------------------------------------------
       # general parameters:
       - LOGLEVEL=error
+      - PROMETHEUS_ENABLE=true
       # --------------------------------------------------
       # SDR related parameters:
       - READSB_DEVICE_TYPE=rtlsdr
