@@ -90,7 +90,13 @@ services:
       # --------------------------------------------------
       # general parameters:
       - LOGLEVEL=error
+      # --------------------------------------------------
+      # monitoring parameters:
       - PROMETHEUS_ENABLE=true
+      - INFLUXDBV2_URL=http://10.10.2.103:8086
+      - INFLUXDBV2_TOKEN=${FEEDER_INFLUXDB_TOKEN}
+      - INFLUXDBV2_ORG=home
+      - INFLUXDBV2_BUCKET=adsb
       # --------------------------------------------------
       # SDR related parameters:
       - READSB_DEVICE_TYPE=rtlsdr
@@ -162,3 +168,17 @@ services:
       - /run:exec,size=256M
       - /tmp:size=128M
       - /var/log:size=32M
+
+  # Optional: Prometheus Node Exporter
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter
+    command:
+      - '--path.rootfs=/host'
+    cap_add:
+      - SYS_TIME
+    network_mode: host
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - '/:/host:ro,rslave'
